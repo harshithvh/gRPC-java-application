@@ -100,12 +100,11 @@ public class AllocateSeat extends AllocateSeatServiceImplBase {
                 .setSeat(Seat.newBuilder()
                         .setSection(request.getSection())
                         .setSeatNumber(seatNumber + 1)
-                        .build()) // You might need to set appropriate values for the seat
+                        .build())
                 .build();
 
         TicketData.getInstance().getUserInfo().put(request.getEmail(), updatePurchaseInfo);
 
-        // Create an AllocateSeatResponse with the allocated seat information
         AllocateSeatResponse allocateSeatResponse = AllocateSeatResponse.newBuilder()
                 .setEmail(request.getEmail())
                 .setSection(request.getSection())
@@ -122,6 +121,6 @@ public class AllocateSeat extends AllocateSeatServiceImplBase {
                 return i;
             }
         }
-        return -1; // No available seat found
+        return -1;
     }
 }

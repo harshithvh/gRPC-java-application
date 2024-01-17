@@ -15,7 +15,7 @@ public class grpcServer {
 
     public static void main(String args[]) throws IOException, InterruptedException {
 
-        int port = 9090; // Change the port to an available port
+        int port = 9090;
 
         System.out.println("Starting GRPC Server");
         Server server = ServerBuilder.forPort(port)

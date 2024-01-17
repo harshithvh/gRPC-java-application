@@ -39,12 +39,10 @@ public class ShowReceipt extends ShowReceiptServiceImplBase {
             return;
         }
 
-        // Create a ShowReceiptResponse
         ShowReceiptResponse showReceiptResponse = ShowReceiptResponse.newBuilder()
                 .setUserInfo(receiptInfo)
                 .build();
 
-        // Send the response back to the client
         responseObserver.onNext(showReceiptResponse);
         responseObserver.onCompleted();
     }

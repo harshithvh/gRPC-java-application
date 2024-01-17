@@ -54,13 +54,11 @@ public class PurchaseTicket extends PurchaseTicketServiceImplBase {
                 .setUser(request.getUser())
                 .setPricePaid((float) price)
                 .setPurchaseId(purchaseID)
-                .setSeat(Seat.newBuilder().build()) // You might need to set appropriate values for the seat
+                .setSeat(Seat.newBuilder().build())
                 .build();
 
-        // Store the purchaseResponse in the Server's in-memory storage
         ticketData.userInfo.put(request.getUser().getEmail(), ticketInfo);
 
-        // Send the response back to the client
         responseObserver.onNext(purchaseResponse);
         responseObserver.onCompleted();
     }

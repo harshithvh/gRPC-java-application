@@ -86,17 +86,15 @@ public class ModifySeat extends ModifySeatServiceImplBase {
                 .setSeat(Seat.newBuilder()
                         .setSection(section)
                         .setSeatNumber(newSeatNumber)
-                        .build()) // You might need to set appropriate values for the seat
+                        .build())
                 .build();
 
         TicketData.getInstance().getUserInfo().put(request.getEmail(), updatepurchaseResponse);
 
-        // Create a ModifySeatResponse indicating success
         ModifySeatResponse modifySeatResponse = ModifySeatResponse.newBuilder()
                 .setRes("Seat modified successfully")
                 .build();
 
-        // Send the response back to the client
         responseObserver.onNext(modifySeatResponse);
         responseObserver.onCompleted();
     }

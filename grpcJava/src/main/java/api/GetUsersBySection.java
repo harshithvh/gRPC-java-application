@@ -25,10 +25,9 @@ public class GetUsersBySection extends GetUsersBySectionServiceImplBase {
             return;
         }
 
-        // Initialize a list to store UserSeatInfo for the requested section
         List<Receipt> usersBySection = new ArrayList<>();
 
-        // Iterate through stored tickets and collect users with the requested section
+        // collect users with the requested section
         for (Receipt receiptInfo : ticketData.userInfo.values()) {
             if (receiptInfo.getSeat().getSection().equals(request.getSection())) {
                 usersBySection.add(receiptInfo);
@@ -40,7 +39,6 @@ public class GetUsersBySection extends GetUsersBySectionServiceImplBase {
                 .addAllUserInfo(usersBySection)
                 .build();
 
-        // Send the response back to the client
         responseObserver.onNext(getUsersBySectionResponse);
         responseObserver.onCompleted();
     }

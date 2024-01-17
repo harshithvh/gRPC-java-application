@@ -43,15 +43,13 @@ public class RemoveUser extends RemoveUserServiceImplBase {
         int currentSeatNumber = purchaseResponse.getSeat().getSeatNumber();
         currSeat[currentSeatNumber - 1] = false;
 
-        // Remove the user from the stored tickets
+        // Remove the user
         ticketData.userInfo.remove(request.getEmail());
 
-        // Create a RemoveUserResponse indicating success
         RemoveUserResponse removeUserResponse = RemoveUserResponse.newBuilder()
                 .setRes("User removed successfully")
                 .build();
 
-        // Send the response back to the client
         responseObserver.onNext(removeUserResponse);
         responseObserver.onCompleted();
     }
