@@ -1,0 +1,110 @@
+syntax="proto3";
+
+option java_multiple_files = true;
+option java_package = "com.grpcTrainbooking.proto";
+
+package ticket_service;
+
+message User {
+    string first_name = 1;
+    string last_name = 2;
+    string email = 3;
+}
+
+message Seat {
+    string section = 1;
+    int32 seat_number = 2;
+}
+
+message Receipt {
+    string from = 1;
+    string to = 2;
+    User user = 3;
+    Seat seat = 4;
+    float price_paid = 5;
+    string purchase_id = 6;
+}
+
+message PurchaseRequest {
+    string from = 1;
+    string to = 2;
+    User user = 4;
+}
+
+message PurchaseResponse {
+    string from = 1;
+    string to = 2;
+    User user = 3;
+    double price_paid = 4;
+    string purchase_id = 5;
+}
+
+message AllocateSeatRequest {
+   string email = 1;
+   string section = 2;
+}
+
+message AllocateSeatResponse {
+    string email = 1;
+    string section = 2;
+    int32 seat_number = 3;
+}
+
+message ShowReceiptRequest {
+   string email = 1;
+}
+
+message ShowReceiptResponse {
+    Receipt user_info = 1;
+}
+
+message GetUsersBySectionRequest {
+    string section = 1;
+}
+
+message GetUsersBySectionResponse {
+    repeated Receipt user_info = 1;
+}
+
+message RemoveUserRequest {
+    string email = 1;
+}
+
+message RemoveUserResponse {
+    string res = 1;
+}
+
+message ModifySeatRequest {
+    string email = 1;
+    string new_section = 2;
+    int32 new_seat_number = 3;
+}
+
+message ModifySeatResponse {
+    string res = 1;
+}
+
+// Service definition
+service PurchaseTicketService {
+    rpc PurchaseTicket(PurchaseRequest) returns (PurchaseResponse) {}
+}
+
+service AllocateSeatService {
+    rpc AllocateSeat(AllocateSeatRequest) returns (AllocateSeatResponse) {}
+}
+
+service ShowReceiptService {
+    rpc ShowReceipt(ShowReceiptRequest) returns (ShowReceiptResponse) {}
+}
+
+service GetUsersBySectionService {
+    rpc GetUsersBySection(GetUsersBySectionRequest) returns (GetUsersBySectionResponse) {}
+}
+
+service RemoveUserService {
+    rpc RemoveUser(RemoveUserRequest) returns (RemoveUserResponse) {}
+}
+
+service ModifySeatService {
+    rpc ModifySeat(ModifySeatRequest) returns (ModifySeatResponse) {}
+}
